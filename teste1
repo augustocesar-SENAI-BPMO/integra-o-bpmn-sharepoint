@@ -1,0 +1,16 @@
+<div id="bpmnCanvas"></div>
+<script src="https://unpkg.com/bpmn-js@8.7.0/dist/bpmn-viewer.development.js"></script>
+<script>
+  var BpmnViewer = window.BpmnJS;
+  var viewer = new BpmnViewer({ container: '#bpmnCanvas' });
+
+  fetch('https://sesibahia.sharepoint.com/sites/SENAI_EPP/Biblioteca%20de%20processos/Forms/AllItems.aspx?viewid=f9ebc8b2%2Da976%2D48f0%2Da8fa%2D0846164c0466&needsAttentionView=1&id=%2Fsites%2FSENAI%5FEPP%2FBiblioteca%20de%20processos%2F20%20Processos%20Principais%2F25%20Da%20solicita%C3%A7%C3%A3o%20ao%20atendimento%20do%20cliente%2F25%2E2%20Programa%20para%20competitividade%20da%20ind%C3%BAstria%2F25%2E2%2E1%20Ades%C3%A3o%20ao%20programa%2Ebpmn&parent=%2Fsites%2FSENAI%5FEPP%2FBiblioteca%20de%20processos')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.text();
+    })
+    .then(xml => viewer.importXML(xml))
+    .catch(err => console.error('Erro ao carregar o diagrama BPMN:', err));
+</script>
